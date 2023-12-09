@@ -11,22 +11,22 @@ export class UnidadmedidaService {
   constructor(private http: HttpClient) { }
 
   getProveedores(): Observable<UnidadMedida[]>{
-    return this.http.get<UnidadMedida[]>('https://localhost:7268/api/UnidadMedida');
+    return this.http.get<UnidadMedida[]>('https://compraswebapi.azurewebsites.net/api/UnidadDeMedida/List');
   }
 
   getProveedorById(id: number): Observable<UnidadMedida> {
-    return this.http.get<UnidadMedida>(`https://localhost:7268/api/UnidadMedida/${id}`);
+    return this.http.get<UnidadMedida>(`https://compraswebapi.azurewebsites.net/api/UnidadMedida/${id}`);
   }
 
   deleteProveedor(id: number): Observable<void> {
-    return this.http.delete<void>(`https://localhost:7268/api/UnidadMedida/${id}`);
+    return this.http.delete<void>(`https://compraswebapi.azurewebsites.net/api/UnidadMedida/${id}`);
   }
 
   agregarProveedor(unidad:UnidadMedida ): Observable<UnidadMedida>{
-    return this.http.post<UnidadMedida>(`https://localhost:7268/api/UnidadMedida`, unidad);
+    return this.http.post<UnidadMedida>(`https://compraswebapi.azurewebsites.net/api/UnidadMedida`, unidad);
   }
 
   updateProveedor( id: number, unidad: UnidadMedida): Observable<void>{
-    return this.http.put<void>(`https://localhost:7268/api/UnidadMedida/${id}`, unidad )
+    return this.http.put<void>(`https://compraswebapi.azurewebsites.net/api/UnidadMedida/${id}`, unidad )
   }
 }

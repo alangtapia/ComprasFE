@@ -1,7 +1,7 @@
 export interface Proveedor {
 
   id?: number,
-  cedula: string,
+  cedulaRnc: string,
   nombreComercial: string,
   estado: string
 }

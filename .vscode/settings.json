@@ -1,0 +1,9 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/4d354b7e-1a78-4aab-8e5d-fbe51dd1fffe/resourceGroups/Compras/providers/Microsoft.Web/sites/ComprasModulo",
+    "appService.deploySubpath": "dist\\fe-crudcompras",
+    "appService.showBuildDuringDeployPrompt": false
+}

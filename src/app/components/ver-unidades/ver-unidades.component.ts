@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UnidadMedida } from 'src/app/interfaces/unidadMedida';
 import { UnidadmedidaService } from 'src/app/services/unidadmedida.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-ver-unidades',
@@ -10,7 +11,7 @@ import { UnidadmedidaService } from 'src/app/services/unidadmedida.service';
   styleUrls: ['./ver-unidades.component.css']
 })
 export class VerUnidadesComponent {
-
+  dataSource = new MatTableDataSource<UnidadMedida>();
   id!: number;
   unidad!: UnidadMedida
   loading: boolean = false;
@@ -33,6 +34,29 @@ export class VerUnidadesComponent {
 
   ngOnDestroy(): void {
       this.routeSub.unsubscribe();
+  }
+
+  
+  obtenerProveedores() {
+    this.loading = true;
+    this.service.getProveedores().subscribe(
+      (response: any) => {
+        this.loading = false;
+        console.log(response);
+        const data = response && response.response; // Accede a la propiedad 'response'
+        
+        if (Array.isArray(data)) {
+          this.dataSource.data = data;
+          console.log(this.dataSource.data);
+        } else {
+          console.error('La respuesta del servicio no contiene un array válido:', response);
+        }
+      },
+      error => {
+        this.loading = false;
+        alert('Ha Ocurrido un Error En El Servidor');
+      }
+    );
   }
 
   obtenerProveedorId(){

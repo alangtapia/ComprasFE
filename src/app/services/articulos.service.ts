@@ -11,22 +11,22 @@ export class ArticulosService {
   constructor(private http: HttpClient) { }
 
   getProveedores(): Observable<Articulo[]>{
-    return this.http.get<Articulo[]>('http://localhost:5130/api/Articulo/List');
+    return this.http.get<Articulo[]>('https://compraswebapi.azurewebsites.net/api/Articulo/List');
   }
 
   getProveedorById(id: number): Observable<Articulo> {
-    return this.http.get<Articulo>(`http://localhost:5130/api/Articulo/Get/${id}`);
+    return this.http.get<Articulo>(`https://compraswebapi.azurewebsites.net/api/Articulo/Get/${id}`);
   }
 
   deleteProveedor(id: number): Observable<void> {
-    return this.http.delete<void>(`http://localhost:5130/api/Articulo/Delete/${id}`);
+    return this.http.delete<void>(`https://compraswebapi.azurewebsites.net/api/Articulo/Delete/${id}`);
   }
 
   agregarProveedor(articulo: Articulo): Observable<Articulo>{
-    return this.http.post<Articulo>(`http://localhost:5130/api/Articulo/Set`, articulo);
+    return this.http.post<Articulo>(`https://compraswebapi.azurewebsites.net/api/Articulo/Set`, articulo);
   }
 
   updateProveedor( id: number, articulo: Articulo): Observable<void>{
-    return this.http.put<void>(`http://localhost:5130/api/Articulo/Update/${id}`, articulo )
+    return this.http.put<void>(`https://compraswebapi.azurewebsites.net/api/Articulo/Update/${id}`, articulo )
   }
 }

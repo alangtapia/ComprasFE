@@ -16,7 +16,7 @@ export class ListadoProveedorComponent implements OnInit, AfterViewInit {
 
   constructor(private _snackBar: MatSnackBar, private _service: ProveedorService){}
 
-  displayedColumns: string[] = ['Cedula', 'NombreComercial', 'Estado', 'Actions'];
+  displayedColumns: string[] = ['cedulaRnc', 'NombreComercial', 'Estado', 'Actions'];
   dataSource = new MatTableDataSource<Proveedor>();
   loading: boolean = false;
 
@@ -40,16 +40,26 @@ export class ListadoProveedorComponent implements OnInit, AfterViewInit {
     this.obtenerProveedores()
   }
 
-  obtenerProveedores(){
+  obtenerProveedores() {
     this.loading = true;
-    this._service.getProveedores().subscribe(data => {
-      this.loading = false;
-      this.dataSource.data = data
-      console.log(data);
-    }, error => {
-      this.loading = false;
-      alert('Ha Ocurrido un Error En El Servidor');
-    })
+    this._service.getProveedores().subscribe(
+      (response: any) => {
+        this.loading = false;
+        console.log(response);
+        const data = response && response.response; // Accede a la propiedad 'response'
+        
+        if (Array.isArray(data)) {
+          this.dataSource.data = data;
+          console.log(this.dataSource.data);
+        } else {
+          console.error('La respuesta del servicio no contiene un array válido:', response);
+        }
+      },
+      error => {
+        this.loading = false;
+        alert('Ha Ocurrido un Error En El Servidor');
+      }
+    );
   }
 
   eliminar(id: number){

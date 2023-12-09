@@ -51,7 +51,7 @@ export class AgregarEditarProveedorComponent implements OnInit {
     this.loading = true;
     this.service.getProveedorById(id).subscribe(data => {
       this.form.setValue({
-        Cedula: data.cedula,
+        Cedula: data.cedulaRnc,
         NombreComercial: data.nombreComercial,
         Estado: data.estado
       })
@@ -65,7 +65,7 @@ export class AgregarEditarProveedorComponent implements OnInit {
 
     const proveedor: Proveedor = {
 
-      cedula: this.form.value.Cedula,
+      cedulaRnc: this.form.value.cedulaRnc,
       nombreComercial: this.form.value.NombreComercial,
       estado: this.form.value.Estado
     }
